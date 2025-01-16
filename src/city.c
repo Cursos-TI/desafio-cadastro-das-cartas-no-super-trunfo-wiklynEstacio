@@ -89,7 +89,23 @@ void register_city(City* city, City** city_list, int registered_cities_count)
 
     city_list[registered_cities_count]->population_size = city->population_size;
     city_list[registered_cities_count]->area = city->area;
+
+    if (city->area != 0) {
+        city_list[registered_cities_count]->population_density = 
+            (float)city->population_size / city->area;
+    } else {
+        city_list[registered_cities_count]->population_density = 0.0;
+    }
+
     city_list[registered_cities_count]->gpd = city->gpd;
+
+    if (city->population_size != 0) {
+        city_list[registered_cities_count]->gpd_pc = 
+            city->gpd / (float)city->population_size;
+    } else {
+        city_list[registered_cities_count]->gpd_pc = 0.0;
+    }
+    
     city_list[registered_cities_count]->tourist_sites_count = city->tourist_sites_count;
 }
 
