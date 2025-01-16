@@ -35,7 +35,15 @@ int main()
 
         // Pergunta ao usuário se deve continuar a registrar cartas
         if (registered_cities_count < MAX_CITIES) {
-            keep_registering = ask_to_keep_registering() ? 'S' : 'N';
+            if (ask_to_keep_registering())
+            {
+                keep_registering = 'S';
+                puts("");
+            }
+            else
+            {
+                keep_registering = 'N';
+            }
         } else {
             puts("\nNumero maximo de cartas atingido.");
         }

@@ -151,7 +151,6 @@ bool ask_to_keep_registering()
         printf("\nRegistrar outra carta? (S/N): ");
         scanf(" %c", &response);
         getchar();
-        puts("");
         response = toupper(response);
 
         if (response != 'S' && response != 'N') {
