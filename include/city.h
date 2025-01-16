@@ -12,9 +12,11 @@ typedef struct _city
     char state;
     char* card_code;
     char* city_name;
-    int population;
+    int population_size;
     float area;
+    float population_density;
     float gpd;
+    float gpd_pc;
     int tourist_sites_count;
 } City;
 
