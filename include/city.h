@@ -77,8 +77,13 @@ void register_city(City* city, City** city_list, int registered_cities_count);
 ///   - População: Número inteiro representando a população total da cidade.
 ///   - Área: Número de ponto flutuante representando a área em quilômetros
 ///     quadrados, com duas casas decimais.
+///   - Densidade Populacional: Número de ponto flutuante representando a
+///     densidade populacional em pessoas por quilômetro quadrado, com duas
+///     casas decimais.
 ///   - PIB: Número de ponto flutuante representando o PIB em bilhões de reais,
 ///     com duas casas decimais.
+///   - PIB per Capta: Número de ponto flutuante representando o PIB per Capta
+///     em bilhões de reais, com zero casas decimais.
 ///   - Número de Pontos Turísticos: Número inteiro indicando a quantidade de
 ///     pontos turísticos.
 /// - A função assume que o ponteiro `city` não é NULL. Não realiza validações
@@ -86,6 +91,11 @@ void register_city(City* city, City** city_list, int registered_cities_count);
 /// @param city Um ponteiro para a estrutura do tipo `City` cujas propriedades
 ///             serão exibidas.
 ///             O ponteiro deve ser válido e não NULL.
+/// @note
+/// - Para seguir o modelo de exibição de dados mostrado no nível "Aventureiro":
+///   - A propriedade PIB é dividida por 1_000_000_000 antes de ser exibida.
+///   - A propriedade PIB per Capta é mostrada sem casas decimais, apesar de ser
+///     do tipo float.
 void print_city(const City *city);
 
 /// @brief Libera a memória alocada para os dados de uma cidade.
