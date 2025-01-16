@@ -29,6 +29,8 @@ typedef struct _city
 /// - Converte a entrada do estado para maiúscula.
 /// - Garante que o primeiro caractere do código da carta seja convertido para
 ///   maiúscula.
+/// - Garante que o primeiro caractere do nome da cidade seja convertido para
+///   maiúscula.
 /// - Valida a entrada para evitar erros de alocação, encerrando o programa em
 ///   caso de falha.
 /// @return Um ponteiro para uma estrutura do tipo City alocada dinamicamente.
