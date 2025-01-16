@@ -41,7 +41,7 @@ City* get_city_data()
     strcpy(city->city_name, provided_city_name);
 
     printf("Digite a populacao: ");
-    scanf("%d", &city->population);
+    scanf("%d", &city->population_size);
     getchar();
 
     printf("Digite a area: ");
@@ -87,7 +87,7 @@ void register_city(City* city, City** city_list, int registered_cities_count)
     }
     strcpy(city_list[registered_cities_count]->city_name, city->city_name);
 
-    city_list[registered_cities_count]->population = city->population;
+    city_list[registered_cities_count]->population_size = city->population_size;
     city_list[registered_cities_count]->area = city->area;
     city_list[registered_cities_count]->gpd = city->gpd;
     city_list[registered_cities_count]->tourist_sites_count = city->tourist_sites_count;
@@ -103,7 +103,7 @@ void print_city(const City *city)
     printf("Estado: %c\n", city->state);
     printf("Codigo da Carta: %s\n", city->card_code);
     printf("Nome da Cidade:: %s\n", city->city_name);
-    printf("Populacao: %d\n", city->population);
+    printf("Populacao: %d\n", city->population_size);
     printf("Area: %.2f km²\n", city->area);
     printf("PIB: %.2f bilhoes de reais\n", city->gpd);
     printf("Numero de Pontos Turisticos: %d\n", city->tourist_sites_count);
