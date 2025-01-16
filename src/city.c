@@ -119,7 +119,7 @@ void print_city(const City *city)
 
     printf("Estado: %c\n", city->state);
     printf("Codigo da Carta: %s\n", city->card_code);
-    printf("Nome da Cidade:: %s\n", city->city_name);
+    printf("Nome da Cidade: %s\n", city->city_name);
     printf("Populacao: %d\n", city->population_size);
     printf("Area: %.2f km²\n", city->area);
     printf("Densidade Populacional: %.2f pessoas/km²\n", city->population_density);
