@@ -79,7 +79,7 @@ void register_city(City* city, City** city_list, int registered_cities_count)
     strcpy(city_list[registered_cities_count]->card_code, city->card_code);
 
     city_list[registered_cities_count]->city_name = calloc(
-        (strlen(city->city_name)), sizeof(char)
+        (strlen(city->city_name) + 1), sizeof(char)
     );
     if (city_list[registered_cities_count]->city_name == NULL) {
         perror("Erro ao alocar memoria para o nome da cidade em `register_city`.\n");
