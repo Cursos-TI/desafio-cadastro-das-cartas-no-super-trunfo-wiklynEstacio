@@ -31,8 +31,9 @@ City* get_city_data()
     strcpy(city->card_code, provided_card_code);
 
     printf("Digite o nome da cidade: ");
-    scanf("%255s", provided_city_name);
-    getchar();
+    fgets(provided_city_name, sizeof(provided_city_name), stdin);
+    provided_city_name[strcspn(provided_city_name, "\n")] = '\0';
+    provided_city_name[0] = toupper(provided_city_name[0]);
     city->city_name = calloc(strlen(provided_city_name) + 1, sizeof(char));
     if (city->city_name == NULL) {
         perror("Erro ao alocar memória para o nome da cidade");
