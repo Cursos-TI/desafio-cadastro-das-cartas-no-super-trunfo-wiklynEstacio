@@ -50,6 +50,9 @@ City* get_city_data();
 ///   - Área.
 ///   - PIB.
 ///   - Número de pontos turísticos.
+/// - Usa os dados fornecidos para calcular a Densidade Populacional e o PIB per
+///   Capta. Adiciona os valores calculados para a nova entrada na lista de
+///   cidades.
 /// - Verifica se a alocação de memória foi bem-sucedida. Em caso de falha,
 ///   exibe uma mensagem de erro e encerra o programa.
 /// @param city Um ponteiro para os dados da cidade a serem registrados. Não
