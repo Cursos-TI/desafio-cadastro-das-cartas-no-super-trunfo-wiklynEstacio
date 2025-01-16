@@ -105,7 +105,7 @@ void register_city(City* city, City** city_list, int registered_cities_count)
     } else {
         city_list[registered_cities_count]->gpd_pc = 0.0;
     }
-    
+
     city_list[registered_cities_count]->tourist_sites_count = city->tourist_sites_count;
 }
 
@@ -121,7 +121,9 @@ void print_city(const City *city)
     printf("Nome da Cidade:: %s\n", city->city_name);
     printf("Populacao: %d\n", city->population_size);
     printf("Area: %.2f km²\n", city->area);
+    printf("Densidade Populacional: %.2f pessoas/km²\n", city->population_density);
     printf("PIB: %.2f bilhoes de reais\n", city->gpd);
+    printf("PIB per Capta: %.0f reais\n", city->gpd_pc);
     printf("Numero de Pontos Turisticos: %d\n", city->tourist_sites_count);
 }
 
