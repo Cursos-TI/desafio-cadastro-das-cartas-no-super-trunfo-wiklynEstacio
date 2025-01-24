@@ -163,16 +163,28 @@ void print_city(const City *city)
 
 void free_city(City** city_ref)
 {
+    // Verifica se o ponteiro para o ponteiro da cidade é NULL.
+    // Se for, não há nada para liberar, então a função retorna.
     if (city_ref == NULL)
         return;
 
+    // Verifica se o ponteiro para a cidade é NULL.
+    // Se for, a cidade já foi liberada ou nunca foi alocada.
     if (*city_ref == NULL)
         return;
 
+    // Armazena o ponteiro da cidade em uma variável local para facilitar o
+    // acesso.
     City *city = *city_ref;
+
+    // Libera a memória alocada para `card_code` e `city_name`
     free(city->card_code);
     free(city->city_name);
+
+    // Libera a memória alocada para a estrutura `City`.
     free(city);
+
+    // Define o ponteiro original para NULL para evitar referências pendentes.
     *city_ref = NULL;
 }
 
