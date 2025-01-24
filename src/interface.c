@@ -147,6 +147,32 @@ void print_city(const City *city)
     printf("Numero de Pontos Turisticos: %d\n", city->tourist_sites_count);
 }
 
+void print_card_to_compare(const City *city, int card_number)
+{
+    // Esta função é quase idêntica à função `print_city()`. A única diferença
+    // é a adição da propriedade `super_power`
+
+    // Checa se a memória para a estrutura `City` foi alocada corretamente
+    if (city == NULL) {
+        fprintf(stderr, "Erro: ponteiro NULL fornecido para `print_card_to_compare`.\n");
+        exit(EXIT_FAILURE);
+    }
+
+    // Exibe no terminal as propriedades da estrutura `City`, indicando de qual
+    // carta são os dados
+    printf("\nDados registrados para a carta %d:\n\n", card_number);
+    printf("Estado da carta %d: %c\n", card_number, city->state);
+    printf("Codigo da carta %d: %s\n", card_number, city->card_code);
+    printf("Nome da Cidade da carta %d: %s\n", card_number, city->city_name);
+    printf("Populacao da carta %d: %ld\n", card_number, city->population_size);
+    printf("Area da carta %d: %.2f km²\n", card_number, city->area);
+    printf("Densidade Populacional da carta %d: %.2f pessoas/km²\n", card_number, city->population_density);
+    printf("PIB da carta %d: %.2f bilhoes de reais\n", card_number, city-> gpd / 1e9);
+    printf("PIB per Capta da carta %d: %.0f reais\n", card_number, city->gpd_pc);
+    printf("Numero de Pontos Turisticos da carta %d: %d\n", card_number, city->tourist_sites_count);
+    printf("Super Poder da carta %d: %.2f\n", card_number, city->super_power);
+}
+
 bool ask_to_keep_registering()
 {
     // Adiciona variável auxiliar
