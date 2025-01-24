@@ -62,6 +62,71 @@ City* get_city_data()
     return city;
 }
 
+City* get_one_city_data(char* card_number)
+{
+    // Esta função é quase idêntica à função `get_city_data()`. A única
+    // diferença são as mensagens que aparecem pedindo a inserção dos dados.
+
+    // Declara variáveis auxiliares
+    char provided_state;
+    char provided_card_code[4];
+    char provided_city_name[256];
+    
+    // Aloca memória para uma estrutura `City`
+    City *city = alocate_city();
+
+    // Coleta os dados da cidade
+    // Usa as propriedades auxiliares em `state`, `card_code` e `city_name`
+    // Transforma para maísculas as primerias letras dessas três propriedades
+    // Aloca espaço na memória para os arrays de caracteres
+    // Copia os valores inseridos para as propriedades da estrutura `City`
+    printf("Digite o estado da %s carta: ", card_number);
+    scanf(" %c", &provided_state);
+    getchar();
+    provided_state = toupper(provided_state);
+    city->state = provided_state;
+
+    printf("Digite o codigo da %s carta: ", card_number);
+    scanf("%3s", provided_card_code);
+    getchar();
+    provided_card_code[0] = toupper(provided_card_code[0]);
+    city->card_code = calloc(strlen(provided_card_code) + 1, sizeof(char));
+    if (city->card_code == NULL) {
+        perror("Erro ao alocar memoria para o codigo da carta");
+        exit(EXIT_FAILURE);
+    }
+    strcpy(city->card_code, provided_card_code);
+
+    printf("Digite o nome da cidade da %s carta: ", card_number);
+    fgets(provided_city_name, sizeof(provided_city_name), stdin);
+    provided_city_name[strcspn(provided_city_name, "\n")] = '\0';
+    provided_city_name[0] = toupper(provided_city_name[0]);
+    city->city_name = calloc(strlen(provided_city_name) + 1, sizeof(char));
+    if (city->city_name == NULL) {
+        perror("Erro ao alocar memória para o nome da cidade");
+        exit(EXIT_FAILURE);
+    }
+    strcpy(city->city_name, provided_city_name);
+
+    printf("Digite a populacao da %s carta: ", card_number);
+    scanf("%ld", &city->population_size);
+    getchar();
+
+    printf("Digite a area da %s carta: ", card_number);
+    scanf("%f", &city->area);
+    getchar();
+
+    printf("Digite o PIB da %s carta: ", card_number);
+    scanf("%f", &city->gpd);
+    getchar();
+ 
+    printf("Digite o numero de pontos turisticos da %s carta: ", card_number);
+    scanf("%d", &city->tourist_sites_count);
+    getchar();
+
+    return city;
+}
+
 void print_city(const City *city)
 {
     // Checa se a memória para a estrutura `City` foi alocada corretamente
