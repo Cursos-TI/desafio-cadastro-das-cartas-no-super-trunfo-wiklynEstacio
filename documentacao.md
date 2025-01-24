@@ -13,14 +13,14 @@ O projeto segue a seguinte estrutura de diretórios:
 
 ```bash
 .
-├── README.md           # Documentação do projeto
+├── README.md                       # Documentação do projeto
 ├── apps
-│   └── main.c          # Arquivo principal com a função `main`
-├── include             # Arquivos de cabeçalhos contendo as declarações das funções
+│   └── CartasSuperTrunfo.c         # Arquivo principal com a função `main`
+├── include                         # Arquivos de cabeçalhos contendo as declarações das funções
 │   ├── card.h
 │   ├── city.h
 │   └── interface.h
-└── src                 # Arquivos de implementação das funções declaradas nos cabeçalhos
+└── src                             # Arquivos de implementação das funções declaradas nos cabeçalhos
     ├── card.c
     ├── city.c
     └── interface.c
