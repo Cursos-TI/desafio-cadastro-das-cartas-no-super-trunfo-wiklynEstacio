@@ -1,4 +1,6 @@
+#include "card.h"
 #include "city.h"
+#include "interface.h"
 
 int choose_functionality()
 {
