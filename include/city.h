@@ -12,7 +12,7 @@ typedef struct _city
     char state;
     char* card_code;
     char* city_name;
-    int population_size;
+    unsigned long int population_size;
     float area;
     float population_density;
     float gpd;
