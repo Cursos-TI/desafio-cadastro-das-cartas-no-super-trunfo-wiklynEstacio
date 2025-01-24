@@ -83,24 +83,6 @@ void register_city(City* city, City* city_in_list)
         + (float)city_in_list->tourist_sites_count;
 }
 
-void print_city(const City *city)
-{
-    if (city == NULL) {
-        fprintf(stderr, "Erro: ponteiro NULL fornecido para `print_city`.\n");
-        exit(EXIT_FAILURE);
-    }
-
-    printf("Estado: %c\n", city->state);
-    printf("Codigo da Carta: %s\n", city->card_code);
-    printf("Nome da Cidade: %s\n", city->city_name);
-    printf("Populacao: %d\n", city->population_size);
-    printf("Area: %.2f km²\n", city->area);
-    printf("Densidade Populacional: %.2f pessoas/km²\n", city->population_density);
-    printf("PIB: %.2f bilhoes de reais\n", city->gpd  / 1e9);
-    printf("PIB per Capta: %.0f reais\n", city->gpd_pc);
-    printf("Numero de Pontos Turisticos: %d\n", city->tourist_sites_count);
-}
-
 void free_city(City** city_ref)
 {
     // Verifica se o ponteiro para o ponteiro da cidade é NULL.

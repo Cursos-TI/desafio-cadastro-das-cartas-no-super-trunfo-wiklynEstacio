@@ -61,3 +61,23 @@ City* get_city_data()
 
     return city;
 }
+
+void print_city(const City *city)
+{
+    // Checa se a memória para a estrutura `City` foi alocada corretamente
+    if (city == NULL) {
+        fprintf(stderr, "Erro: ponteiro NULL fornecido para `print_city`.\n");
+        exit(EXIT_FAILURE);
+    }
+
+    // Exibe no terminal as propriedades da estrutura `City`
+    printf("Estado: %c\n", city->state);
+    printf("Codigo da Carta: %s\n", city->card_code);
+    printf("Nome da Cidade: %s\n", city->city_name);
+    printf("Populacao: %ld\n", city->population_size);
+    printf("Area: %.2f km²\n", city->area);
+    printf("Densidade Populacional: %.2f pessoas/km²\n", city->population_density);
+    printf("PIB: %.2f bilhoes de reais\n", city->gpd / 1e9);
+    printf("PIB per Capta: %.0f reais\n", city->gpd_pc);
+    printf("Numero de Pontos Turisticos: %d\n", city->tourist_sites_count);
+}
