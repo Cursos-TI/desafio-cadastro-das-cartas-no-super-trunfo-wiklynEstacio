@@ -1,5 +1,19 @@
 #include "city.h"
 
+City* alocate_city()
+{
+    // Aloca espaço, na memória heap, para uma estrutura `City`
+    City *city = (City*) calloc(1, sizeof(City));
+    
+    // Checa se a memória foi alocada corretamente
+    if (city == NULL) {
+        perror("Erro ao alocar memoria para a cidade em `get_city_data`\n");
+        exit(EXIT_FAILURE);
+    }
+
+    return city;
+}
+
 City* get_city_data()
 {
     char provided_state;
