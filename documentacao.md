@@ -13,14 +13,23 @@ O projeto segue a seguinte estrutura de diretórios:
 
 ```bash
 .
-├── README.md                       # Documentação do projeto
+├── README.md                                       # Explicacao do desafio
 ├── apps
-│   └── CartasSuperTrunfo.c         # Arquivo principal com a função `main`
-├── include                         # Arquivos de cabeçalhos contendo as declarações das funções
+│   └── CartasSuperTrunfo.c                         # Arquivo principal com a função `main`
+├── documentacao.md                                 # Documentação do projeto
+├── images                                          # Screenshots do funcionamento do programa
+│   ├── apresenta-funcionalidades.PNG
+│   ├── compara-as-duas-cartas.PNG
+│   ├── exibe-dados-das-duas-cartas.PNG
+│   ├── insere-dados-das-duas-cartas.PNG
+│   ├── registra-uma-carta.PNG
+│   ├── seleciona-comparacao-de-cartas.PNG
+│   └── seleciona-registro-de-cartas.PNG
+├── include                                         # Arquivos de cabeçalhos contendo as declarações das funções
 │   ├── card.h
 │   ├── city.h
 │   └── interface.h
-└── src                             # Arquivos de implementação das funções declaradas nos cabeçalhos
+└── src                                             # Arquivos de implementação das funções declaradas nos cabeçalhos
     ├── card.c
     ├── city.c
     └── interface.c
