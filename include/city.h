@@ -7,150 +7,100 @@
 #include <stdlib.h>
 #include <string.h>
 
+/**
+ * @struct City
+ * @brief Representa os dados de uma cidade.
+ *
+ * Esta estrutura armazena informações detalhadas sobre uma cidade, 
+ * incluindo estado, nome, população, área e outras estatísticas relevantes.
+ */
 typedef struct _city
 {
-    char state;
-    char* card_code;
-    char* city_name;
-    unsigned long int population_size;
-    float area;
-    float population_density;
-    float gpd;
-    float gpd_pc;
-    int tourist_sites_count;
-    float super_power;
+    char state; /**< O estado associado à cidade. Possíveis valores: A, B, C, D, E, F, G, H. */
+    char* card_code; /**< O código da carta associado à cidade. Possíveis valores: a combinação de valor de `state` e um número entre 01, 02, 03 e 04.*/
+    char* city_name; /**< O nome da cidade. */
+    unsigned long int population_size; /**< Tamanho da população da cidade. */
+    float area; /**< Área da cidade (km²). */
+    float population_density; /**< Densidade populacional (pessoas por km²). */
+    float gpd; /**< Produto Interno Bruto (PIB) da cidade. */
+    float gpd_pc; /**< PIB per capita da cidade. */
+    int tourist_sites_count; /**< Número de pontos turísticos na cidade. */
+    float super_power; /**< A soma de todos os valores numéricos da cidade. */
 } City;
 
-/// @brief Aloca memória e coleta os dados de uma cidade a partir da entrada do
-///        usuário via CLI.
-/// @details 
-/// - Aloca memória dinamicamente para uma estrutura do tipo City.
-/// - Solicita ao usuário que insira os dados da cidade, como estado, código da
-///   carta, nome, população, área, PIB, e número de pontos turísticos.
-/// - Converte a entrada do estado para maiúscula.
-/// - Garante que o primeiro caractere do código da carta seja convertido para
-///   maiúscula.
-/// - Garante que o primeiro caractere do nome da cidade seja convertido para
-///   maiúscula.
-/// - Valida a entrada para evitar erros de alocação, encerrando o programa em
-///   caso de falha.
-/// @return Um ponteiro para uma estrutura do tipo City alocada dinamicamente.
-City* get_city_data();
+/**
+ * @brief Aloca memória para uma nova cidade.
+ *
+ * Esta função aloca dinamicamente memória para uma estrutura do tipo `City`
+ * usando a função `calloc`. Se a alocação falhar, a função imprime uma
+ * mensagem de erro e termina o programa com `exit(EXIT_FAILURE)`.
+ *
+ * @return Um ponteiro para a estrutura `City` alocada na memória.
+ *
+ * @note A memória alocada para a cidade deve ser liberada com a função
+ *       `free_city` quando não for mais necessária.
+ */
+City* alocate_city();
 
-/// @brief Registra os dados de uma cidade na lista de cidades.
-/// @details
-/// - Verifica se o ponteiro fornecido não é NULL. 
-///   Caso contrário, exibe uma mensagem de erro descritiva e encerra o
-///   programa.
-/// - Aloca memória para uma nova entrada na lista de cidades.
-/// - Copia os dados da cidade fornecida para a nova entrada, incluindo:
-///   - Estado.
-///   - Código da carta (alocando memória dinâmica para a string).
-///   - Nome da cidade (alocando memória dinâmica para a string).
-///   - População.
-///   - Área.
-///   - PIB.
-///   - Número de pontos turísticos.
-/// - Usa os dados fornecidos para calcular a Densidade Populacional e o PIB per
-///   Capta. Adiciona os valores calculados para a nova entrada na lista de
-///   cidades.
-/// - Verifica se a alocação de memória foi bem-sucedida. Em caso de falha,
-///   exibe uma mensagem de erro e encerra o programa.
-/// @param city Um ponteiro para os dados da cidade a serem registrados. Não
-///             deve ser NULL.
-/// @param city_list Um ponteiro para o array de ponteiros de cidades onde a
-///                  nova cidade será adicionada.
-///                  Deve ter espaço suficiente para armazenar a nova entrada.
-/// @param registered_cities_count O índice onde a nova cidade será armazenada. 
-///                                Deve ser menor que o tamanho máximo do array.
-void register_city(City* city, City** city_list, int registered_cities_count);
+/**
+ * @brief Registra os dados de uma cidade em um item de lista.
+ *
+ * Esta função copia os dados de uma cidade (`city`) para um item de uma lista
+ * de cidades (`city_in_list`). Ela realiza a alocação dinâmica de memória para
+ * os campos da cidade na lista, como o nome da cidade e o código da carta.
+ * Além disso, calcula a densidade populacional, o PIB per capita e o superpoder
+ * da cidade com base nos dados fornecidos.
+ *
+ * @param city Ponteiro para a cidade de origem cujos dados serão copiados.
+ * @param city_in_list Ponteiro para a cidade na lista onde os dados serão
+ *                     registrados.
+ *
+ * @note Se algum dos ponteiros fornecidos for `NULL`, a função imprimirá uma
+ *       mensagem de erro e finalizará o programa com `exit(EXIT_FAILURE)`.
+ *       Além disso, a função realiza alocação dinâmica de memória, e o espaço
+ *       alocado deve ser liberado quando não for mais necessário.
+ *
+ * @see alocate_city()
+ */
+void register_city(City* city, City* city_in_list);
 
-/// @brief Exibe as propriedades de uma cidade no CLI.
-/// @details 
-/// - Verifica se o ponteiro fornecido não é NULL. 
-///   Caso contrário, exibe uma mensagem de erro descritiva e encerra o
-///   programa.
-/// - Exibe os dados armazenados na estrutura `City` no seguinte formato:
-///   - Estado: Caractere representando o estado da cidade.
-///   - Código da Carta: String com até 3 caracteres representando o código
-///     único da cidade.
-///   - Nome da Cidade: String contendo o nome completo da cidade.
-///   - População: Número inteiro representando a população total da cidade.
-///   - Área: Número de ponto flutuante representando a área em quilômetros
-///     quadrados, com duas casas decimais.
-///   - Densidade Populacional: Número de ponto flutuante representando a
-///     densidade populacional em pessoas por quilômetro quadrado, com duas
-///     casas decimais.
-///   - PIB: Número de ponto flutuante representando o PIB em bilhões de reais,
-///     com duas casas decimais.
-///   - PIB per Capta: Número de ponto flutuante representando o PIB per Capta
-///     em bilhões de reais, com zero casas decimais.
-///   - Número de Pontos Turísticos: Número inteiro indicando a quantidade de
-///     pontos turísticos.
-/// - A função assume que o ponteiro `city` não é NULL. Não realiza validações
-///   de NULL.
-/// @param city Um ponteiro para a estrutura do tipo `City` cujas propriedades
-///             serão exibidas.
-///             O ponteiro deve ser válido e não NULL.
-/// @note
-/// - Para seguir o modelo de exibição de dados mostrado no nível "Aventureiro":
-///   - A propriedade PIB é dividida por 1_000_000_000 antes de ser exibida.
-///   - A propriedade PIB per Capta é mostrada sem casas decimais, apesar de ser
-///     do tipo float.
-void print_city(const City *city);
-
-/// @brief Libera a memória alocada para os dados de uma cidade.
-/// @details
-/// - A função verifica se os argumentos fornecidos são válidos:
-///   - Se `city_ref` (o ponteiro para o ponteiro da estrutura `City`) for NULL,
-///     a função retorna imediatamente.
-///   - Se o valor de `*city_ref` (o ponteiro para a estrutura `City`) for NULL,
-///     a função também retorna imediatamente.
-/// - Caso os argumentos sejam válidos:
-///   - Libera a memória alocada dinamicamente para os campos `card_code` e
-///     `city_name` da estrutura `City`.
-///   - Em seguida, libera a memória alocada para a própria estrutura `City`.
-///   - Após liberar a memória, redefine o ponteiro original (`*city_ref`) como
-///     NULL para evitar dangling pointers.
-/// @param city_ref Um ponteiro para o ponteiro da estrutura do tipo `City`. 
-///                 Deve apontar para memória alocada dinamicamente e não deve
-///                 ser NULL.
-/// @note
-/// - Passar `city_ref` como NULL ou um valor de `*city_ref` que seja NULL não
-///   causa erros, mas a função não realizará nenhuma ação.
-/// - Após a execução bem-sucedida, o ponteiro original referenciado por
-///   `city_ref` será redefinido para NULL.
+/**
+ * @brief Libera a memória alocada para uma cidade.
+ *
+ * Esta função libera a memória associada a uma cidade, incluindo o código da
+ * carta, o nome da cidade e a estrutura da cidade em si. Ela verifica se o
+ * ponteiro fornecido não é `NULL` antes de tentar liberar a memória, garantindo
+ * que a operação seja segura.
+ * Após liberar a memória, o ponteiro da cidade é setado para `NULL` para evitar
+ * o uso de ponteiros pendentes.
+ *
+ * @param city_ref Ponteiro duplo para a cidade que será liberada.
+ *
+ * @note Se o ponteiro `city_ref` ou o ponteiro para a cidade (referenciado por
+ *       `city_ref`) forem `NULL`, a função não realizará nenhuma operação.
+ *
+ * @see alocate_city()
+ */
 void free_city(City** city_ref);
 
-/// @brief Solicita ao usuário que decida se deseja continuar registrando dados.
-/// @details Exibe uma mensagem pedindo ao usuário para inserir 'S' para
-///          continuar ou 'N' para parar.
-///          Aceita apenas entradas válidas ('S' ou 'N', sem diferenciação entre
-///          maiúsculas e minúsculas). 
-///          Em caso de entrada inválida, continua solicitando até que uma
-///          resposta válida seja fornecida.
-/// @return Retorna true se o usuário optar por continuar ('S') ou false se
-///         optar por parar ('N').
-bool ask_to_keep_registering();
-
-/// @brief Libera a memória alocada para todas as cidades na lista.
-/// @details
-/// - A função percorre a lista de cidades apontada por `city_list` e libera a
-///   memória de cada elemento utilizando a função `free_city`.
-/// - Antes de chamar `free_city`, a função verifica se cada ponteiro individual
-///   no array (ou seja, `city_list[i]`) não é NULL.
-/// - Após liberar a memória de cada cidade, os ponteiros individuais no array
-///   são automaticamente definidos como NULL pela função `free_city`.
-/// @param city_list Um ponteiro para o array de ponteiros de cidades. 
-///                  Cada ponteiro no array deve apontar para uma estrutura
-///                  válida do tipo `City` ou ser NULL.
-/// @param registered_cities_count O número de cidades atualmente registradas na
-///                                lista.
-///                                Deve ser um valor não negativo.
-/// @note
-/// - A função não realiza nenhuma ação se `city_list` for NULL.
-/// - Se algum elemento do array `city_list` for NULL, ele será ignorado sem
-///   causar erros.
+/**
+ * @brief Libera a memória de uma lista de cidades.
+ *
+ * Esta função itera sobre uma lista de cidades e, para cada cidade registrada
+ * (não `NULL`), chama a função `free_city()` para liberar a memória alocada
+ * para essa cidade. A função garante que a memória alocada para cada cidade da
+ * lista seja liberada de forma segura.
+ *
+ * @param city_list Ponteiro para a lista de cidades a serem liberadas.
+ * @param registered_cities_count Número de cidades registradas na lista.
+ *
+ * @note A função não verifica se `city_list` é `NULL`. A verificação é feita na
+ *       função `free_city()`.
+ *       A função `free_city()` é chamada para cada cidade na lista, garantindo
+ *       que todos os elementos sejam liberados corretamente.
+ *
+ * @see free_city()
+ */
 void free_city_list(City** city_list, int registered_cities_count);
 
 #endif
