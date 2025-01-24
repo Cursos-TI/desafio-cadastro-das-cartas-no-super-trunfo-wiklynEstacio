@@ -84,14 +84,14 @@ a compatibilidade.
 O comando usado para compilar foi:
 
 ```bash
-gcc apps/main.c -o main src/*.c -I include
+gcc apps/CartasSuperTrunfo.c -o CartasSuperTrunfo src/*.c -I include
 ```
 
 Explicação:
 
 - `gcc`: Compilador utilizado.
-- `apps/main.c`: Arquivo principal com a função main.
-- `-o main`: Nome do executável gerado.
+- `apps/CartasSuperTrunfo.c`: Arquivo principal com a função main.
+- `-o CartasSuperTrunfo`: Nome do executável gerado.
 - `src/*.c`: Arquivos com a implementação das funções declaradas nos cabeçalhos.
 - `-I include`: Diretório que contém os arquivos de cabeçalho.
 
