@@ -208,6 +208,8 @@ bool ask_to_keep_registering()
 
 void free_city_list(City** city_list, int registered_cities_count)
 {
+    // Itera sobre cada item da lista de cidades para liberar o espaço alocado
+    // pelos ponteiros, caso não sejam nulos. Se forem nulos, nada acontece.
     for (int i = 0; i < registered_cities_count; i++) {
         if (city_list[i] != NULL)
             free_city(&city_list[i]);
