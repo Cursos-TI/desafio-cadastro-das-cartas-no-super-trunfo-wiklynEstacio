@@ -110,24 +110,6 @@ void free_city(City** city_ref)
     *city_ref = NULL;
 }
 
-bool ask_to_keep_registering()
-{
-    char response;
-    
-    do {
-        printf("\nRegistrar outra carta? (S/N): ");
-        scanf(" %c", &response);
-        getchar();
-        response = toupper(response);
-
-        if (response != 'S' && response != 'N') {
-            puts("Entrada invalida. Por favor, digite 'S' para sim ou 'N' para nao.");
-        }
-    } while (response != 'S' && response != 'N');
-
-    return response == 'S';
-}
-
 void free_city_list(City** city_list, int registered_cities_count)
 {
     // Itera sobre cada item da lista de cidades para liberar o espaço alocado

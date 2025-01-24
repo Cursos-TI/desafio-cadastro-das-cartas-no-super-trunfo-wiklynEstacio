@@ -81,3 +81,27 @@ void print_city(const City *city)
     printf("PIB per Capta: %.0f reais\n", city->gpd_pc);
     printf("Numero de Pontos Turisticos: %d\n", city->tourist_sites_count);
 }
+
+bool ask_to_keep_registering()
+{
+    // Adiciona variável auxiliar
+    char response;
+
+    printf("\nRegistrar outra carta? (S/N): ");
+    
+    do {
+        scanf(" %c", &response);
+        getchar();
+
+        // Transforma em maiúscula a resposta do usuário
+        response = toupper(response);
+
+        // Checa se a resposta é válida
+        if (response != 'S' && response != 'N')
+            printf("Entrada invalida. Por favor, digite 'S' para sim ou 'N' para nao: ");
+
+    } while (response != 'S' && response != 'N');
+
+    // Retorna o resultado desta comparação. 1, caso verdadeiro. 0, caso falso.
+    return response == 'S';
+}
