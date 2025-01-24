@@ -18,6 +18,7 @@ typedef struct _city
     float gpd;
     float gpd_pc;
     int tourist_sites_count;
+    float super_power;
 } City;
 
 /// @brief Aloca memória e coleta os dados de uma cidade a partir da entrada do
