@@ -74,54 +74,73 @@ City* get_city_data()
     return city;
 }
 
-void register_city(City* city, City** city_list, int registered_cities_count)
+void register_city(City* city, City* city_in_list)
 {
+    // Checa se a memória para a estrutura `City` foi alocada corretamente
     if (city == NULL) {
-        fprintf(stderr, "Erro: ponteiro NULL fornecido para `register_city`.\n");
+        fprintf(stderr, "Erro: ponteiro NULL `city` fornecido para `register_city`.\n");
         exit(EXIT_FAILURE);
     }
-
-    city_list[registered_cities_count] = (City*) calloc(1, sizeof(City));
     
-    if (city_list[registered_cities_count] == NULL) {
-        perror("Erro ao alocar memoria para uma cidade em `register_city`.\n");
+    if (city_in_list == NULL) {
+        perror("Erro: ponteiro NULL `city_in_list` fornecido para `register_city`.\n");
         exit(EXIT_FAILURE);
     }
 
-    city_list[registered_cities_count]->state = city->state;
+    // Copia os dados fornecidos pelo usuário para a estrutura `City` alocada
+    // no array de cidades
+    // Aloca memória para os arrays de caracteres (`card_code` e `city_name`)
+    city_in_list->state = city->state;
 
-    city_list[registered_cities_count]->card_code = calloc(3, sizeof(char));
-    strcpy(city_list[registered_cities_count]->card_code, city->card_code);
+    city_in_list->card_code = calloc(3, sizeof(char));
+    strcpy(city_in_list->card_code, city->card_code);
 
-    city_list[registered_cities_count]->city_name = calloc(
+    city_in_list->city_name = calloc(
         (strlen(city->city_name) + 1), sizeof(char)
     );
-    if (city_list[registered_cities_count]->city_name == NULL) {
+    if (city_in_list->city_name == NULL) {
         perror("Erro ao alocar memoria para o nome da cidade em `register_city`.\n");
         exit(EXIT_FAILURE);
     }
-    strcpy(city_list[registered_cities_count]->city_name, city->city_name);
+    strcpy(city_in_list->city_name, city->city_name);
 
-    city_list[registered_cities_count]->population_size = city->population_size;
-    city_list[registered_cities_count]->area = city->area;
+    city_in_list->population_size = city->population_size;
+    city_in_list->area = city->area;
 
-    if (city->area != 0) {
-        city_list[registered_cities_count]->population_density = 
+    // Verifica se os valores numéricos que serão usados como denominador no
+    // cálculo das propriedades extras não é zero.
+    if (city->area != 0)
+    {
+        city_in_list->population_density = 
             (float)city->population_size / city->area;
-    } else {
-        city_list[registered_cities_count]->population_density = 0.0;
+    }
+    // Caso sejam zero, não faz o cálculo e atribui o valor 0.0 à propriedade
+    else
+    {
+        city_in_list->population_density = 0.0;
     }
 
-    city_list[registered_cities_count]->gpd = city->gpd;
+    city_in_list->gpd = city->gpd;
 
-    if (city->population_size != 0) {
-        city_list[registered_cities_count]->gpd_pc = 
-            city->gpd / (float)city->population_size;
-    } else {
-        city_list[registered_cities_count]->gpd_pc = 0.0;
+    if (city->population_size != 0)
+    {
+        city_in_list->gpd_pc = city->gpd / (float)city->population_size;
+    } else
+    {
+        city_in_list->gpd_pc = 0.0;
     }
 
-    city_list[registered_cities_count]->tourist_sites_count = city->tourist_sites_count;
+    city_in_list->tourist_sites_count = city->tourist_sites_count;
+
+    // Calcula o valor do Super Poder, fazendo a conversão dos valores inteiros
+    // para float
+    city_in_list->super_power =
+        (float)city_in_list->population_size
+        + city_in_list->area
+        + (float)1/city_in_list->population_density
+        + city_in_list->gpd
+        + city_in_list->gpd_pc
+        + (float)city_in_list->tourist_sites_count;
 }
 
 void print_city(const City *city)
