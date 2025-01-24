@@ -1,4 +1,5 @@
 #include "city.h"
+#include "interface.h"
 
 City* get_city_data()
 {
