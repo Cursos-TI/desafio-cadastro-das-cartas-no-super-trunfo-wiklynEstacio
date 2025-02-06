@@ -45,7 +45,7 @@ O projeto segue a seguinte estrutura de diretórios:
 ```bash
 .
 ├── DOCUMENTACAO.md                 # Documentação do projeto
-├── README.md                       # Instruções do Projeto
+├── README.md                       # Instruções do projeto
 ├── apps
 │   └── CartasSuperTrunfo.c         # Arquivo principal com a função `main`
 ├── include                         # Arquivos de cabeçalhos contendo as declarações das funções
