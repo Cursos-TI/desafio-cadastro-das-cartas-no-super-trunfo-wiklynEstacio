@@ -5,12 +5,29 @@
 
 int main()
 {
+    // Exibe e explica as funcionalidades implementadas
+    show_functionalities_menu();
+    
+    // Armazena a funcionalidade escolhida pelo usuário
     int chosen_functionality = choose_functionality();
 
-    if (chosen_functionality == 1)
-        register_cards(MAX_CITIES);
-    else
-        compare_cards();
+    // Redireciona o fluxo de acordo com a funcionalidade escolhida
+    switch (chosen_functionality)
+    {
+        case RegisterCards:
+            register_cards(MAX_CITIES);
+            break;
+        
+        case CompareAllProperties:
+            compare_cards();
+            break;
+
+        // Não foi necessária a implementação do caso `default` pois há
+        // validacão e verificação da entrada do usuário. O programa ficará em
+        // loop até que o usuário insira um valor válido
+        default:
+            break;
+    }
     
     return 0;
 }

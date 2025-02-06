@@ -1,5 +1,29 @@
-#ifndef CARD_H
+#ifndef CARD_H // Include Guards
 #define CARD_H
+
+#include "util.h"
+
+/**
+ * @enum Functionality
+ * @brief Representa os fluxos de execução do programa.
+ */
+enum Functionality
+{
+    RegisterCards = 1, /**< O fluxo associado ao simples registro de cartas. Permite registrar 32 cartas. */
+    CompareAllProperties, /**< O fluxo associado ao registro de duas cartas e à comparação de todas as suas propriedades numéricas.*/
+};
+
+/**
+ * @brief Exibe o menu de funcionalidades do programa.
+ * 
+ * Esta função imprime na tela as funcionalidades disponíveis no programa,
+ * utilizando formatação ANSI para destacar os títulos das opções.
+ * 
+ * @details As funcionalidades apresentadas no menu são:
+ * - Registro de cartas
+ * - Registro de duas cartas e comparação das suas propriedades numéricas
+ */
+void show_functionalities_menu();
 
 /**
  * @brief Exibe as funcionalidades disponíveis para o usuário e solicita uma
@@ -22,7 +46,8 @@
  * 
  *         - 1: Registro de cartas.
  * 
- *         - 2: Registro e comparação de cartas.
+ *         - 2: Registro de duas cartas e comparação das suas propriedades
+ *           numéricas.
  */
 int choose_functionality();
 

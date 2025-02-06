@@ -2,14 +2,18 @@
 #include "city.h"
 #include "interface.h"
 
+void show_functionalities_menu()
+{
+    puts("O programa possui as seguintes funcionalidades:\n");
+    puts("\033[1m1. Registro de cartas:\033[0m Voce pode registrar e ver os dados registrados para cada carta.");
+    puts("\033[1m2. Registro e comparacao de duas cartas:\033[0m Voce pode registrar duas cartas e ver a comparacao entre os dados registrados para cada propriedade numerica de cada carta.");
+}
+
 int choose_functionality()
 {
     int chosen_functionality = 0;
 
-    puts("O programa possui duas funcionalidades principais:\n");
-    puts("1. Se refere ao registro de cartas. Voce pode registrar e ver os dados registrados para cada carta.");
-    puts("2. Se refere ao registro e comparacao de duas cartas. Voce pode registrar duas cartas e ver a comparacao entre os dados registrados para cada propriedade de cada carta.");
-    printf("\nEscolha o numero da opcao que deseja executar: ");  
+    printf("\nEscolha o numero da opcao que deseja executar: ");
 
     do
     {
@@ -18,13 +22,15 @@ int choose_functionality()
         {
             // Se a entrada for inválida: limpa o buffer de entrada
             while (getchar() != '\n');
-            printf("Opcao invalida. Por favor, insira 1 ou 2: ");
+            printf("Opcao invalida. Por favor, insira uma das opcoes apresentadas: ");
+            continue;
         }
+        
         // Se a entrada for válida, checa se é um dos valores possíveis
-        else if (chosen_functionality != 1 && chosen_functionality != 2)
-            printf("Opcao invalida. Por favor, insira 1 ou 2: ");
+        if (!is_valid_functionality(chosen_functionality))
+            printf("Opcao invalida. Por favor, insira uma das opcoes apresentadas: ");
 
-    } while (chosen_functionality != 1 && chosen_functionality != 2);
+    } while (!is_valid_functionality(chosen_functionality));
 
     puts("");
     return chosen_functionality;
@@ -82,7 +88,7 @@ void register_cards(int max_cities)
             else
                 keep_registering = 'N';
         } else
-            puts("\nNumero maximo de cartas atingido.");
+            puts("\nNumero maximo de registros atingido.");
     }
 
     // Libera o espaço na memória alocado para as cidades
@@ -93,28 +99,7 @@ void compare_cards()
 {
     // Aloca um array com dois ponteiros nulos
     City* city_list[2];
-    for (int i = 0; i < 2; i++) {
-        city_list[i] = NULL;
-    }
-
-    // Aponta os ponteiros nulos para estruturas `City` 
-    city_list[0] = alocate_city();
-    city_list[1] = alocate_city();
-
-    // Coleta os dados para as estruturas `City`. Também copia os dados
-    // fornecidos para a lista de cidades e calcula valores extras através
-    // desses dados
-    City *first_city = get_one_city_data("primeira");
-    register_city(first_city, city_list[0]);
-
-    puts("");
-
-    City *second_city = get_one_city_data("segunda");
-    register_city(second_city, city_list[1]);
-
-    // Exibe os dados coletados e calculados no terminal
-    print_card_to_compare(city_list[0], 1);
-    print_card_to_compare(city_list[1], 2);
+    alocate_cities_to_compare(city_list);
 
     puts("\nComparando as cartas: Caso a carta 1 seja a vencedora, o resultado será 1. Caso a carta 2 seja a vencedora, o resultado será 0.\n");
 

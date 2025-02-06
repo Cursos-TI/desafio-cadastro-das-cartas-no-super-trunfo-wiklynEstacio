@@ -1,4 +1,5 @@
 #include "city.h"
+#include "interface.h"
 
 City* alocate_city()
 {
@@ -118,4 +119,33 @@ void free_city_list(City** city_list, int registered_cities_count)
         if (city_list[i] != NULL)
             free_city(&city_list[i]);
     }
+}
+
+void alocate_cities_to_compare(City* city_list[2])
+{
+    // Aloca um array com dois ponteiros nulos
+    for (int i = 0; i < 2; i++) {
+        city_list[i] = NULL;
+    }
+
+    // Aponta os ponteiros nulos para estruturas `City` 
+    city_list[0] = alocate_city();
+    city_list[1] = alocate_city();
+
+    // Coleta os dados para as estruturas `City`. Também copia os dados
+    // fornecidos para a lista de cidades e calcula valores extras através
+    // desses dados
+    City *first_city = get_one_city_data("primeira");
+    register_city(first_city, city_list[0]);
+
+    puts("\nCarta registrada com sucesso.\n");
+
+    City *second_city = get_one_city_data("segunda");
+    register_city(second_city, city_list[1]);
+
+    puts("\nCarta registrada com sucesso.");
+
+    // Exibe os dados coletados e calculados no terminal
+    print_card_to_compare(city_list[0], 1);
+    print_card_to_compare(city_list[1], 2);
 }

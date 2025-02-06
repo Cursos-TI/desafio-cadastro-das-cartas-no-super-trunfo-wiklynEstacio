@@ -1,4 +1,4 @@
-#ifndef INTERFACE_H
+#ifndef INTERFACE_H // Include Guards
 #define INTERFACE_H
 
 #include "city.h"

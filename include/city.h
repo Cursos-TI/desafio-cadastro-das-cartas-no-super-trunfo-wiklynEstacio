@@ -1,4 +1,4 @@
-#ifndef CITY_H
+#ifndef CITY_H // Include Guards
 #define CITY_H
 
 #include <ctype.h>
@@ -102,5 +102,18 @@ void free_city(City** city_ref);
  * @see free_city()
  */
 void free_city_list(City** city_list, int registered_cities_count);
+
+/**
+ * @brief Aloca e inicializa duas estruturas `City` para comparação.
+ * 
+ * @details Esta função aloca memória para duas estruturas `City`, coleta os
+ * dados de cada cidade, registra as informações e exibe os dados coletados no
+ * terminal. A função recebe um array de dois ponteiros para `City` e os
+ * inicializa com valores nulos antes de alocar as estruturas.
+ * 
+ * @param city_list Um array de dois ponteiros para `City`, onde as cidades
+ *                  registradas serão armazenadas.
+ */
+void alocate_cities_to_compare(City* city_list[2]);
 
 #endif
